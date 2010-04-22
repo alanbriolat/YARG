@@ -25,7 +25,7 @@
             <? if ($C['sysinfo']['have_disk_space']): ?>
             <span class="hasicon" style="<?=icon_css('drive')?>">
                 <span class="progress_outer">
-                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>">&nbsp;</span>
+                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>%;">&nbsp;</span>
                 </span>
             </span>
             <? endif; ?>
