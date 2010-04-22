@@ -1,0 +1,261 @@
+@body_text: #000;
+@body_bg: #fff;
+
+@header_text: #fff;
+@header_bg: #333;
+@header_accent: #579;
+
+@progress_closed_fg: #999;
+@progress_closed_bg: #fff;
+@progress_stopped_fg: #555;
+@progress_stopped_bg: #ccc;
+@progress_downloading_fg: #579;
+@progress_downloading_bg: #def;
+@progress_seeding_fg: #7d7;
+@progress_seeding_bg: #dfd;
+
+@tab_border_radius: 3px;
+
+@progress_height: 0.8;
+@progress_border_width: 1px;
+@progress_border_padding: 1px;
+@progress_border_radius_inner: 3px;
+@progress_border_radius_outer: @progress_border_radius_inner + @progress_border_padding + @progress_border_width;
+/*@progress_border_radius_outer: 0px;*/
+
+@rounded_corners (@radius: 3px) {
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+}
+
+@rounded_corners_top (@radius: 3px) {
+    -moz-border-radius-topleft: @radius;
+    -moz-border-radius-topright: @radius;
+    -webkit-border-top-left-radius: @radius;
+    -webkit-border-top-right-radius: @radius;
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+@rounded_corners_bottom (@radius: 3px) {
+    -moz-border-radius-bottomleft: @radius;
+    -moz-border-radius-bottomright: @radius;
+    -webkit-border-bottom-left-radius: @radius;
+    -webkit-border-bottom-right-radius: @radius;
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: small;
+    background-color: #fff;
+    color: #000;
+}
+
+a img {
+    border: none;
+}
+
+td,
+th {
+    padding: 3px 5px;
+}
+
+/* TODO: does this work in any version of IE? */
+input[type="checkbox"] {
+    padding: 0;
+    margin: 0;
+}
+
+.clearer {
+    clear: both;
+    line-height: 0;
+    height: 0px;
+}
+
+.rightalign {
+    text-align: right;
+}
+
+img.icon {
+    vertical-align: bottom;
+}
+
+.hasicon {
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 20px;
+}
+
+.hasicon_right {
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px;
+}
+
+.progress_outer {
+    display: inline-block;
+    vertical-align: inherit;
+    padding: @progress_border_padding;
+    border: @progress_border_width solid;
+    @rounded_corners(@progress_border_radius_outer);
+}
+
+.progress_inner {
+    line-height: @progress_height;
+    display: inline-block;
+    @rounded_corners(@progress_border_radius_inner);
+}
+
+@progress_style (@fg; @bg; @width: auto) {
+    .progress_outer {
+        background-color: @bg;
+        border-color: @fg;
+        width: @width;
+    }
+    .progress_inner {
+        background-color: @fg;
+    }
+}
+
+#header {
+    padding: 0 30px 0 30px;
+    border-top: 5px solid #579;
+    background-color: #333;
+    color: #fff;
+
+    h1 {
+        padding: 0;
+        margin: 0 0 10px 0;
+        clear: left;
+    }
+
+    .sysinfo {
+        float: left;
+        text-align: left;
+        padding: 2px 0;
+        @progress_style(@header_text; @header_bg; 120px);
+    }
+}
+
+#navigation {
+    text-align: right;
+    font-weight: bold;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        ul;
+        display: inline;
+        margin-left: 5px;
+    }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        padding: 2px 10px 4px 10px;
+        color: @header_text;
+        @rounded_corners_bottom(@tab_border_radius);
+
+        :hover {
+            background-color: #555;
+        }
+    }
+
+    a.current {
+        background-color: @header_accent;
+    }
+
+    a.hasicon {
+        background-position: 10px center;
+        padding-left: 30px;
+    }
+}
+
+#subnavigation {
+    text-align: right;
+    font-weight: bold;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        ul;
+        display: inline;
+        margin-left: 5px;
+    }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        padding: 4px 10px 2px 10px;
+        color: #fff;
+        @rounded_corners_top(@tab_border_radius);
+
+        :hover {
+            background-color: #555;
+        }
+    }
+
+    a.current {
+        background-color: @body_bg;
+        color: @body_text;
+    }
+}
+
+#content_outer {
+    padding: 10px 30px;
+}
+
+#torrentlist table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#torrentlist th {
+    text-align: left;
+}
+/* Necessary because the above rule overrides the .rightalign rule */
+#torrentlist th.rightalign {
+    text-align: right;
+}
+
+#torrentlist thead {
+    background-color: #579;
+    color: #fff;
+    /*
+    border-bottom: 2px solid #579;
+    */
+}
+
+#torrentlist tr {
+    /*border: 1px solid #579;*/
+}
+
+#torrentlist tbody {
+    border-top: 10px solid #fff;
+    background-color: #f7f7f7;
+}
+
+#torrentlist tbody:hover {
+    background-color: #ddd;
+}
+
+.closed { @progress_style(@progress_closed_fg; @progress_closed_bg); }
+.stopped { @progress_style(@progress_stopped_fg; @progress_stopped_bg); }
+.downloading { @progress_style(@progress_downloading_fg; @progress_downloading_bg); }
+.seeding { @progress_style(@progress_seeding_fg; @progress_seeding_bg); }

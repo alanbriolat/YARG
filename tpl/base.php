@@ -3,7 +3,7 @@
     <head> 
         <title>YARG</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="<?=site_url('style.css')?>" />
+        <link rel="stylesheet" type="text/css" href="<?=site_url('lessc.php?style.less')?>" />
     </head>
     <body>
         <div id="header">
