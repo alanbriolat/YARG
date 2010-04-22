@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"> 
     <head> 
+        <title>YARG</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="<?=site_url('style.css')?>" />
     </head>
@@ -14,8 +15,30 @@
                 </ul>
             </div>
 
-            <h1 id="title">YARG</h1>
-            <h2 id="subtitle">Yet Another Rtorrent GUI</h2>
+            <h1 id="title">Yet Another rTorrent GUI</h1>
+
+            <div class="clearer">&nbsp;</div>
+
+            <span class="sysinfo">
+            <span class="hasicon" style="<?=icon_css('arrow_down')?>"><?=$C['sysinfo']['downrate']?>B/s</span>&nbsp;
+            <span class="hasicon" style="<?=icon_css('arrow_up')?>"><?=$C['sysinfo']['uprate']?>B/s</span>&nbsp;
+            <? if ($C['sysinfo']['have_disk_space']): ?>
+            <span class="hasicon" style="<?=icon_css('drive')?>">
+                <span class="progress_outer">
+                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>">&nbsp;</span>
+                </span>
+            </span>
+            <? endif; ?>
+            </span>
+
+            <div id="subnavigation">
+                <ul>
+                <li><a class="<?=ifeq($C['subpage'], 'all', 'current')?>" href="<?=site_url('')?>">All (<?=$C['counts']['default']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('list/active')?>">Active (<?=$C['counts']['active']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('list/incomplete')?>">Incomplete (<?=$C['counts']['incomplete']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('list/seeding')?>">Seeding (<?=$C['counts']['seeding']?>)</a></li>
+                </ul>
+            </div>
         </div>
         <div id="body">
         <? $TPL->block('body'); ?>

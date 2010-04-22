@@ -7,6 +7,7 @@ body {
     font-family: sans-serif;
     font-size: small;
     background-color: #fff;
+    color: #000;
 }
 
 .clearer {
@@ -21,17 +22,50 @@ body {
     padding-left: 20px;
 }
 
+.hasicon_right {
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px;
+}
+
+.progress_outer {
+    display: inline-block;
+    padding: 1px;
+    border: 1px solid #579;
+}
+
+.progress_inner {
+    height: 10px;
+    display: inline-block;
+    background-color: #579;
+}
+
 #header {
     padding: 0 30px 0 30px;
-    border-top: 5px solid #555;
+    border-top: 5px solid #579;
     background-color: #333;
     color: #fff;
 }
 
-#header h1,
-#header h2 {
+#header .sysinfo {
+    float: left;
+    text-align: left;
+    padding: 2px 0;
+}
+
+#header .sysinfo .progress_outer {
+    width: 120px;
+    border-color: #fff;
+}
+
+#header .sysinfo .progress_inner {
+    background-color: #fff;
+}
+
+#header h1 {
     padding: 0;
-    margin: 0;
+    margin: 0 0 10px 0;
+    clear: left;
 }
 
 #navigation {
@@ -56,16 +90,60 @@ body {
     text-decoration: none;
     padding: 2px 10px 4px 10px;
     color: #fff;
+    -moz-border-radius: 0px 0px 3px 3px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;    
+}
+
+#navigation a:hover {
+    background-color: #555;
 }
 
 #navigation a.current {
-    background-color: #555;
-    -moz-border-radius: 0px 0px 3px 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;    
+    background-color: #579;
 }
 
 #navigation a.hasicon {
     background-position: 10px center;
     padding-left: 30px;
+}
+
+#subnavigation {
+    text-align: right;
+    font-weight: bold;
+}
+
+#subnavigation ul,
+#subnavigation li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#subnavigation li {
+    display: inline;
+    margin-left: 5px;
+}
+
+#subnavigation a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 4px 10px 2px 10px;
+    color: #fff;
+    -moz-border-radius: 3px 3px 0px 0px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;    
+}
+
+#subnavigation a:hover {
+    background-color: #555;
+}
+
+#subnavigation a.current {
+    background-color: #fff;
+    color: #000;
 }

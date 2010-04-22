@@ -8,6 +8,7 @@ $config['core']['module_paths'] = array('modules');
 $config['autoload']['libraries'] = array(
     'xmlrpc',
     'csf_url_functions',
+    'util_functions',
     'template_functions',
 );
 $config['autoload']['modules'] = array(

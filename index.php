@@ -11,5 +11,8 @@ $CSF = CSF();
 
 $C = array();
 $C['page'] = 'torrents';
+$C['subpage'] = 'all';
 $C['torrents'] = $CSF->rtorrent->get_torrents();
+$C['sysinfo'] = $CSF->rtorrent->get_sysinfo();
+$C['counts'] = $CSF->rtorrent->get_counts();
 echo $CSF->template->render('torrentlist', $C);
