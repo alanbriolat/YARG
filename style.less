@@ -16,12 +16,13 @@
 
 @tab_border_radius: 3px;
 
-@progress_height: 0.8;
 @progress_border_width: 1px;
-@progress_border_padding: 1px;
-@progress_border_radius_inner: 3px;
-@progress_border_radius_outer: @progress_border_radius_inner + @progress_border_padding + @progress_border_width;
-/*@progress_border_radius_outer: 0px;*/
+@progress_border_padding: 0px;
+@progress_border_radius_inner: 0px;
+/*@progress_border_radius_outer: @progress_border_radius_inner + @progress_border_padding + @progress_border_width;*/
+@progress_border_radius_outer: 3px;
+@progress_inner_height: 5px;
+@progress_outer_height: @progress_inner_height + (2 * @progress_border_padding);
 
 @rounded_corners (@radius: 3px) {
     -moz-border-radius: @radius;
@@ -102,15 +103,16 @@ img.icon {
 
 .progress_outer {
     display: inline-block;
-    vertical-align: inherit;
+    vertical-align: middle;
+    height: @progress_outer_height;
     padding: @progress_border_padding;
     border: @progress_border_width solid;
     @rounded_corners(@progress_border_radius_outer);
 }
 
 .progress_inner {
-    line-height: @progress_height;
     display: inline-block;
+    height: @progress_inner_height;
     @rounded_corners(@progress_border_radius_inner);
 }
 

@@ -14,26 +14,31 @@ Key:
 <table>
 <thead>
 <tr id="torrent_top">
-    <th style="width: 10px"><input type="checkbox" /></th>
-    <th>Name <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
+    <th style="width: 10px;"><input type="checkbox" /></th>
+    <th>Name <?=anchor('#', icon('resultset_previous', 'sort descending'))?><?=anchor('#', icon('resultset_next', 'sort ascending'))?></th>
     <th style="width: 100px;">Status <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
     <th class="rightalign" style="width: 70px;">Size <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
     <th class="rightalign" style="width: 70px;">DL</th>
     <th class="rightalign" style="width: 70px;">UL</th>
 </tr>
 </thead>
-<tbody>
 <? foreach ($C['torrents'] as $t): ?>
-<tr id="torrent_<?=$t['id']?>" class="<?=$t['state']?>">
+<tbody id="torrent_<?=$t['id']?>" class="<?=$t['state']?>">
+<tr>
     <td><input type="checkbox" name="torrents[]" value="<?=$t['id']?>" /></td>
-    <td><?=anchor("torrent/{$t['id']}", $t['name'])?></td>
-    <td><span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['completed_percent']?>%;">&nbsp;</span></span></td>
+    <td colspan="2"><?=anchor("torrent/{$t['id']}", $t['name'])?></td>
     <td class="rightalign"><?=nice_byte_count($t['size'])?>B</td>
     <td class="rightalign"><?=nice_byte_count($t['downrate'])?>B/s</td>
     <td class="rightalign"><?=nice_byte_count($t['uprate'])?>B/s</td>
 </tr>
-<? endforeach; ?>
+<tr>
+    <td></td>
+    <td><span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['completed_percent']?>%;">&nbsp;</span></span></td>
+    <td><?=$t['completed_percent']?>%</td>
+    <td colspan="3"></td>
+</tr>
 </tbody>
+<? endforeach; ?>
 </table>
 </div>
 
