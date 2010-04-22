@@ -17,9 +17,9 @@ Key:
     <th style="width: 10px;"><input type="checkbox" /></th>
     <th>Name <?=anchor('#', icon('resultset_previous', 'sort descending'))?><?=anchor('#', icon('resultset_next', 'sort ascending'))?></th>
     <th style="width: 100px;">Status <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
-    <th class="rightalign" style="width: 70px;">Size <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
-    <th class="rightalign" style="width: 70px;">DL</th>
-    <th class="rightalign" style="width: 70px;">UL</th>
+    <th class="rightalign" style="width: 70px;">Size /<br />Ratio</th>
+    <th class="rightalign" style="width: 70px;">DL rate /<br />DL total</th>
+    <th class="rightalign" style="width: 70px;">UL rate /<br />UL total</th>
 </tr>
 </thead>
 <? foreach ($C['torrents'] as $t): ?>
@@ -35,7 +35,8 @@ Key:
     <td></td>
     <td><span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['completed_percent']?>%;">&nbsp;</span></span></td>
     <td><?=$t['completed_percent']?>%</td>
-    <td colspan="3"></td>
+    <td class="rightalign ratio"><span title="seed ratio" class="<?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></span></td>
+    <td colspan="2"></td>
 </tr>
 </tbody>
 <? endforeach; ?>

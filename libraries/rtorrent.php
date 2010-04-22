@@ -25,6 +25,7 @@ class rTorrent
         'chunk_size'        => 'd.get_chunk_size=',
         'total_chunks'      => 'd.get_size_chunks=',
         'completed_chunks'  => 'd.get_completed_chunks=',
+        'ratio'             => 'd.get_ratio=',
         'is_open'           => 'd.is_open=',
         'is_active'         => 'd.is_active=',
         'is_complete'       => 'd.get_complete=',
@@ -58,12 +59,21 @@ class rTorrent
         foreach (php_xmlrpc_decode($resp->value()) as $r)
         {
             $torrent = array_combine(array_keys(self::$VIEW_INFO_QUERY), $r);
+
             // XXX: This is a crude workaround for xmlrpc versions < 1.7 not
             // coping with 64-bit integers.  Unfortunately, most people only
-            // have 1.6 unless they build rtorrent from source... 
+            // have 1.6 unless they build rtorrent from source...  Without this,
+            // large byte counts (> 2^31) wrap around to negative numbers.
             $torrent['size'] = $torrent['chunk_size'] * $torrent['total_chunks'];
             $torrent['completed_size'] = $torrent['chunk_size'] * $torrent['completed_chunks'];
+
+            // Sanitised variables
+            $torrent['ratio'] = round($torrent['ratio'] / 1000, 2);
+
+            // Synthesised variables
             $torrent['completed_percent'] = round($torrent['completed_size'] / $torrent['size'] * 100);
+
+            // Figure out the torrent state
             if ($torrent['is_open'] == 0) {
                 $torrent['state'] = 'closed';
             } else if ($torrent['is_active'] == 1) {

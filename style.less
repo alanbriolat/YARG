@@ -14,6 +14,9 @@
 @progress_seeding_fg: #7d7;
 @progress_seeding_bg: #dfd;
 
+@good_text: #1a1;
+@bad_text: #f11;
+
 @tab_border_radius: 3px;
 
 @progress_border_width: 1px;
@@ -67,6 +70,10 @@ a img {
 td,
 th {
     padding: 3px 5px;
+}
+
+th {
+    vertical-align: bottom;
 }
 
 /* TODO: does this work in any version of IE? */
@@ -255,6 +262,15 @@ img.icon {
 
 #torrentlist tbody:hover {
     background-color: #ddd;
+}
+
+#torrentlist {
+    .ratio .good {
+        color: @good_text;
+    }
+    .ratio .bad {
+        color: @bad_text;
+    }
 }
 
 .closed { @progress_style(@progress_closed_fg; @progress_closed_bg); }
