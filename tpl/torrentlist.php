@@ -4,10 +4,10 @@
 
 <p id="status_key">
 Key:
-<span class="closed"><span class="progress_outer"><span class="progress_inner">&nbsp;&nbsp;</span></span></span> closed
-<span class="stopped"><span class="progress_outer"><span class="progress_inner">&nbsp;&nbsp;</span></span></span> stopped
-<span class="downloading"><span class="progress_outer"><span class="progress_inner">&nbsp;&nbsp;</span></span></span> downloading
-<span class="seeding"><span class="progress_outer"><span class="progress_inner">&nbsp;&nbsp;</span></span></span> seeding
+<span class="closed"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> closed
+<span class="stopped"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> stopped
+<span class="downloading"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> downloading
+<span class="seeding"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> seeding
 </p>
 
 <div id="torrentlist">
