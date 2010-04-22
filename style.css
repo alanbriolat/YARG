@@ -10,10 +10,23 @@ body {
     color: #000;
 }
 
+td,
+th {
+    padding: 3px 5px;
+}
+
 .clearer {
     clear: both;
     line-height: 0;
     height: 0px;
+}
+
+.rightalign {
+    text-align: right;
+}
+
+img.icon {
+    vertical-align: bottom;
 }
 
 .hasicon {
@@ -30,12 +43,13 @@ body {
 
 .progress_outer {
     display: inline-block;
+    vertical-align: inherit;
     padding: 1px;
     border: 1px solid #579;
 }
 
 .progress_inner {
-    height: 10px;
+    line-height: 0.8;
     display: inline-block;
     background-color: #579;
 }
@@ -146,4 +160,49 @@ body {
 #subnavigation a.current {
     background-color: #fff;
     color: #000;
+}
+
+#content_outer {
+    padding: 10px 30px;
+}
+
+#torrentlist table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#torrentlist th {
+    text-align: left;
+}
+/* Necessary because the above rule overrides the .rightalign rule */
+#torrentlist th.rightalign {
+    text-align: right;
+}
+
+#torrentlist thead {
+    background-color: #579;
+    color: #fff;
+}
+
+#torrentlist tr {
+    border: 1px solid #579;
+}
+
+#torrentlist tbody tr:hover {
+    background-color: #ddd;
+}
+
+.closed .progress_outer { border-color: #999; }
+.closed .progress_inner { background-color: #999; }
+.seeding .progress_outer { border-color: #595; }
+.seeding .progress_inner { background-color: #595; }
+.downloading .progress_outer { }
+.downloading .progress_inner { }
+.stopped .progress_outer { border-color: #555; }
+.stopped .progress_inner { background-color: #555; }
+
+/* TODO: does this work in any version of IE? */
+input[type="checkbox"] {
+    padding: 0;
+    margin: 0;
 }

@@ -47,6 +47,27 @@ function magnitude_adjust($value, $div = 1000, $threshold = 1000,
     $value = sprintf($format, $value);
     // Strip trailing 0s and possibly decimal point
     $value = rtrim($value, '0.,');
+    // Make sure it's not empty!
+    if ($value === '')
+        $value = '0';
 
     return $value.$suffixes[$suffix];
+}
+
+/**
+ * Make a "byte count" more readable
+ * 
+ * Heavily inspired by a similar function in wTorrent (getCorrectUnits in
+ * cls/rtorrent.cls.php).
+ */
+function nice_byte_count($value)
+{
+    $suffixes = array(array('', '0'), array('K', '1'), array('M', 2),
+                      array('G', 2), array('T', 3), array('P', 3));
+
+    $i = 0;
+    for (; $i < (count($suffixes) - 1) && $value > 900; ++$i)
+        $value /= 1024;
+
+    return sprintf('%.'.$suffixes[$i][1].'f%s', $value, $suffixes[$i][0]);
 }

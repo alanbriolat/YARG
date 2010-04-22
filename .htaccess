@@ -1,0 +1,34 @@
+# 
+# Example mod_rewrite configuration for a web application using the "front
+# controller" pattern, tailored to CodeScape Framework.  This should sit in
+# the same directory as index.php.
+#
+# The net effect is that the requested path should show up in the
+# ORIG_PATH_INFO server variable, and all GET variables should be passed through
+# to the web application.
+# 
+# Author:   Alan Briolat <alan@codescape.net>
+# License:  Public Domain
+#
+
+<IfModule mod_rewrite.c>
+    # Enable mod_rewrite
+    RewriteEngine   On
+
+    # Base URI for rewriting - necessary if installation doesn't sit at the
+    # docroot of a site (e.g. http://example.com/~user/)
+    #RewriteBase     /
+    RewriteBase     /~alan/YARG/
+
+    # Block direct access to CSF folder
+    RewriteCond     $1  ^csf/.*
+    RewriteRule     ^(.*)$  index.php/$1   [L,QSA]
+
+    # Rewrite requests to any non-existent files
+    RewriteCond     %{REQUEST_FILENAME}     !-f
+    RewriteCond     %{REQUEST_FILENAME}     !-d
+    # Alternative to the above - whitelist directly-accessible files
+    #RewriteCond     $1     !^(index\.php|static/)
+
+    RewriteRule     ^(.*)$  index.php/$1   [L,QSA]
+</IfModule>

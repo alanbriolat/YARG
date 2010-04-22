@@ -24,25 +24,28 @@
             <span class="hasicon" style="<?=icon_css('arrow_up')?>"><?=$C['sysinfo']['uprate']?>B/s</span>&nbsp;
             <? if ($C['sysinfo']['have_disk_space']): ?>
             <span class="hasicon" style="<?=icon_css('drive')?>">
-                <span class="progress_outer">
-                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>%;">&nbsp;</span>
-                </span>
+            <span class="progress_outer" title="<?=nice_byte_count($C['sysinfo']['disk_free'])?>B free (<?=$C['sysinfo']['disk_percent_free']?>%)">
+                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>%;" title="<?=nice_byte_count($C['sysinfo']['disk_used'])?>B used (<?=$C['sysinfo']['disk_percent_used']?>%)">&nbsp;</span>
+            </span>
+            <?=nice_byte_count($C['sysinfo']['disk_used'])?>B / <?=nice_byte_count($C['sysinfo']['disk_total'])?>B
             </span>
             <? endif; ?>
             </span>
 
             <div id="subnavigation">
                 <ul>
-                <li><a class="<?=ifeq($C['subpage'], 'all', 'current')?>" href="<?=site_url('')?>">All (<?=$C['counts']['default']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'default', 'current')?>" href="<?=site_url('')?>">All (<?=$C['counts']['default']?>)</a></li>
                     <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('list/active')?>">Active (<?=$C['counts']['active']?>)</a></li>
                     <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('list/incomplete')?>">Incomplete (<?=$C['counts']['incomplete']?>)</a></li>
                     <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('list/seeding')?>">Seeding (<?=$C['counts']['seeding']?>)</a></li>
                 </ul>
             </div>
         </div>
-        <div id="body">
+        <div id="content_outer">
+        <div id="content">
         <? $TPL->block('body'); ?>
         <? $TPL->endblock(); ?>
+        </div>
         </div>
     </body>
 </html>

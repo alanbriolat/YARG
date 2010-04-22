@@ -9,10 +9,5 @@ require_once 'conf/user.conf.php';
 CSF::init($config);
 $CSF = CSF();
 
-$C = array();
-$C['page'] = 'torrents';
-$C['subpage'] = 'all';
-$C['torrents'] = $CSF->rtorrent->get_torrents();
-$C['sysinfo'] = $CSF->rtorrent->get_sysinfo();
-$C['counts'] = $CSF->rtorrent->get_counts();
-echo $CSF->template->render('torrentlist', $C);
+$response = $CSF->dispatch->dispatch_uri($CSF->request->get_uri());
+echo $response;

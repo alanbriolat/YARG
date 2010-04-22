@@ -8,7 +8,7 @@
  */
 function icon($icon, $alt = '')
 {
-    return sprintf('<img src="%s" alt="%s" />', site_url("icons/$icon.png"), $alt);
+    return sprintf('<img class="icon" src="%s" alt="%s" />', site_url("icons/$icon.png"), $alt);
 }
 
 /**

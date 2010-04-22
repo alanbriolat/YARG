@@ -19,6 +19,15 @@ class rTorrent
     public static $VIEW_INFO_QUERY = array(
         'id'        => 'd.get_hash=',
         'name'      => 'd.get_name=',
+        'downrate'  => 'd.get_down_rate=',
+        'uprate'    => 'd.get_up_rate=',
+        'size'      => 'd.get_size_bytes=',
+        'chunk_size'        => 'd.get_chunk_size=',
+        'total_chunks'      => 'd.get_size_chunks=',
+        'completed_chunks'  => 'd.get_completed_chunks=',
+        'is_open'           => 'd.is_open=',
+        'is_active'         => 'd.is_active=',
+        'is_complete'       => 'd.get_complete=',
     );
 
     // rTorrent client options
@@ -47,7 +56,27 @@ class rTorrent
 
         $results = array();
         foreach (php_xmlrpc_decode($resp->value()) as $r)
-            $results[] = array_combine(array_keys(self::$VIEW_INFO_QUERY), $r);
+        {
+            $torrent = array_combine(array_keys(self::$VIEW_INFO_QUERY), $r);
+            // XXX: This is a crude workaround for xmlrpc versions < 1.7 not
+            // coping with 64-bit integers.  Unfortunately, most people only
+            // have 1.6 unless they build rtorrent from source... 
+            $torrent['size'] = $torrent['chunk_size'] * $torrent['total_chunks'];
+            $torrent['completed_size'] = $torrent['chunk_size'] * $torrent['completed_chunks'];
+            $torrent['completed_percent'] = round($torrent['completed_size'] / $torrent['size'] * 100);
+            if ($torrent['is_open'] == 0) {
+                $torrent['state'] = 'closed';
+            } else if ($torrent['is_active'] == 1) {
+                if ($torrent['is_complete'] == 1) {
+                    $torrent['state'] = 'seeding';
+                } else {
+                    $torrent['state'] = 'downloading';
+                }
+            } else {
+                $torrent['state'] = 'stopped';
+            }
+            $results[] = $torrent;
+        }
 
         return $results;
     }
@@ -64,8 +93,8 @@ class rTorrent
             $values[] = php_xmlrpc_decode($r->value());
         $values = array_combine(array('downrate', 'uprate', 'directory'), $values);
 
-        $values['downrate'] = magnitude_adjust($values['downrate'], 1024, 800);
-        $values['uprate'] = magnitude_adjust($values['uprate'], 1024, 800);
+        $values['downrate'] = round($values['downrate'] / 1024, 2).'K';
+        $values['uprate'] = round($values['uprate'] / 1024, 2).'K';
 
         if (is_dir($values['directory']))
         {
@@ -73,9 +102,9 @@ class rTorrent
             $disk_total = disk_total_space($values['directory']);
             $disk_free = disk_free_space($values['directory']);
             $disk_used = round($disk_total - $disk_free);
-            $values['disk_total'] = magnitude_adjust($disk_total, 1024, 1024);
-            $values['disk_free'] = magnitude_adjust($disk_free, 1024, 1024);
-            $values['disk_used'] = magnitude_adjust($disk_used, 1024, 1024);
+            $values['disk_total'] = $disk_total;
+            $values['disk_free'] = $disk_free;
+            $values['disk_used'] = $disk_used;
             $values['disk_percent_used'] = round(($disk_used / $disk_total) * 100);
             $values['disk_percent_free'] = round(($disk_free / $disk_total) * 100);
         }
