@@ -15,8 +15,8 @@ Key:
 <thead>
 <tr id="torrent_top">
     <th style="width: 10px;"><input type="checkbox" /></th>
-    <th>Name <?=anchor('#', icon('resultset_previous', 'sort descending'))?><?=anchor('#', icon('resultset_next', 'sort ascending'))?></th>
-    <th style="width: 100px;">Status <?=icon('arrow_up')?><?=icon('arrow_down')?></th>
+    <th>Name</th>
+    <th style="width: 100px;">Status</th>
     <th class="rightalign" style="width: 70px;">Size /<br />Ratio</th>
     <th class="rightalign" style="width: 70px;">DL rate</th>
     <th class="rightalign" style="width: 70px;">UL rate</th>

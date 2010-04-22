@@ -1,18 +1,55 @@
-@body_text: #000;
+/* 
+ * Colour scheme: http://colorschemedesigner.com/#0M32bsOsO----
+ *
+ * To try:
+ *  http://colorschemedesigner.com/#3N62rsOsO----
+ *  http://colorschemedesigner.com/#2I62rsOsO----
+ *  http://colorschemedesigner.com/#3p61XsOsOK-K-
+ */
+
+@color_pri_ll:  #fff6e8;
+@color_pri_l:   #ffd18c;
+@color_pri:     #e69317;
+@color_pri_d:   #735e3f;
+@color_pri_dd:  #452900;
+@color_a_ll:    #f1eaff;
+@color_a_l:     #bb98ff;
+@color_a:       #491e9d;
+@color_a_d:     #392f4e;
+@color_a_dd:    #10002f;
+@color_b_ll:    #e8ffe8;
+@color_b_l:     #8cff8c;
+@color_b:       #12b812;
+@color_b_d:     #325c32;
+@color_b_dd:    #003700;
+
+@color_text_light: #fff;
+@color_text_dark:  #000;
+
+@body_text: @color_text_dark;
 @body_bg: #fff;
 
-@header_text: #fff;
-@header_bg: #333;
-@header_accent: #579;
+@link_text: @color_a_dd;
+@link_hover_text: @color_a;
+
+@header_text: @color_text_light;
+@header_bg: @color_a_dd;
+@header_accent: @color_a_d;
 
 @progress_closed_fg: #999;
 @progress_closed_bg: #fff;
 @progress_stopped_fg: #555;
 @progress_stopped_bg: #ccc;
-@progress_downloading_fg: #579;
-@progress_downloading_bg: #def;
-@progress_seeding_fg: #7d7;
-@progress_seeding_bg: #dfd;
+@progress_downloading_fg: @color_a;
+@progress_downloading_bg: @color_a_l;
+@progress_seeding_fg: @color_b;
+@progress_seeding_bg: @color_b_l;
+
+@table_head_bg: @color_pri_d;
+@table_head_text: @color_text_light;
+@row_bg1: #fff;
+@row_bg2: @color_pri_ll;
+@row_hover_bg: @color_pri_l;
 
 @good_text: #1a1;
 @bad_text: #f11;
@@ -61,6 +98,16 @@ body {
     font-size: small;
     background-color: #fff;
     color: #000;
+}
+
+a {
+    /*text-decoration: none;*/
+    color: @link_text;
+    
+    :hover {
+        text-decoration: none;
+        color: @link_hover_text;
+    }
 }
 
 a img {
@@ -136,9 +183,9 @@ img.icon {
 
 #header {
     padding: 0 30px 0 30px;
-    border-top: 5px solid #579;
-    background-color: #333;
-    color: #fff;
+    border-top: 5px solid @header_accent;
+    background-color: @header_bg;
+    color: @header_text;
 
     h1 {
         padding: 0;
@@ -178,7 +225,7 @@ img.icon {
         @rounded_corners_bottom(@tab_border_radius);
 
         :hover {
-            background-color: #555;
+            background-color: @header_accent;
         }
     }
 
@@ -216,7 +263,7 @@ img.icon {
         @rounded_corners_top(@tab_border_radius);
 
         :hover {
-            background-color: #555;
+            background-color: @header_accent;
         }
     }
 
@@ -243,18 +290,11 @@ img.icon {
     text-align: right;
 }
 
-#torrentlist thead {
-    background-color: #579;
-    color: #fff;
-    /*
-    border-bottom: 2px solid #579;
-    */
-}
-
 #torrentlist tr {
     /*border: 1px solid #579;*/
 }
 
+/*
 #torrentlist tbody {
     border-top: 10px solid #fff;
     background-color: #f7f7f7;
@@ -263,8 +303,33 @@ img.icon {
 #torrentlist tbody:hover {
     background-color: #ddd;
 }
+*/
 
 #torrentlist {
+    thead {
+        background-color: @table_head_bg;
+        color: @table_head_text;
+    }
+
+    tbody {
+    }
+
+    tbody:nth-child(even) {
+        background-color: @row_bg1;
+    }
+
+    tbody:nth-child(odd) {
+        background-color: @row_bg2;
+    }
+
+    tbody:hover {
+        background-color: @row_hover_bg;
+    }
+
+    td {
+        padding: 4px 5px;
+    }
+
     .ratio .good {
         color: @good_text;
     }
