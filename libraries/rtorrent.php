@@ -85,6 +85,18 @@ class rTorrent
             } else {
                 $torrent['state'] = 'stopped';
             }
+
+            // Work out which general progress to use
+            switch ($torrent['state'])
+            {
+            case 'seeding':
+                $torrent['progress'] = round(min($torrent['ratio'], 1.0) * 100);
+                break;
+            default:
+                $torrent['progress'] = $torrent['completed_percent'];
+                break;
+            }
+
             $results[] = $torrent;
         }
 
