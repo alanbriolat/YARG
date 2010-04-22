@@ -62,7 +62,7 @@ function magnitude_adjust($value, $div = 1000, $threshold = 1000,
  */
 function nice_byte_count($value)
 {
-    $suffixes = array(array('', '0'), array('K', '1'), array('M', 2),
+    $suffixes = array(array('', 0), array('K', 1), array('M', 2),
                       array('G', 2), array('T', 3), array('P', 3));
 
     $i = 0;
