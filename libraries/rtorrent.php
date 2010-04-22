@@ -72,7 +72,7 @@ class rTorrent
             $values['have_disk_space'] = true;
             $disk_total = disk_total_space($values['directory']);
             $disk_free = disk_free_space($values['directory']);
-            $disk_used = round($disk_total_space - $disk_free_space);
+            $disk_used = round($disk_total - $disk_free);
             $values['disk_total'] = magnitude_adjust($disk_total, 1024, 1024);
             $values['disk_free'] = magnitude_adjust($disk_free, 1024, 1024);
             $values['disk_used'] = magnitude_adjust($disk_used, 1024, 1024);
