@@ -37,6 +37,8 @@ $config['modules']['dispatch'] = array(
     'controller_path' => 'controllers',
     'routes' => array(
         'list' => array('controller' => 'torrents', 'rewrite' => 'torrent_list'),
+        'json/torrents/(.*)' => array('controller' => 'torrents', 'rewrite' => '$1_json'),
+        'json/system/(.*)' => array('controller' => 'system', 'rewrite' => '$1_json'),
         '^$' => array('controller' => 'torrents', 'rewrite' => 'torrent_list/default'),
     ),
 );

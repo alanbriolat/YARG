@@ -4,6 +4,18 @@
         <title>YARG</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="<?=site_url('lessc.php?style.less')?>" />
+        <script type="text/javascript" src="<?=site_url('js/jquery-1.4.2.min.js')?>"></script>
+        <script type="text/javascript" src="<?=site_url('js/yarg.util.js')?>"></script>
+        <script type="text/javascript" src="<?=site_url('js/yarg.js')?>"></script>
+        <script type="text/javascript">
+            var YARG = <?=json_encode(array(
+                'base_url' => CSF::config('url_functions.base_url'),
+                'refresh_interval' => 5000,
+            ))?>;
+            $(document).ready(function () {
+                schedule_update();
+            });
+        </script>
     </head>
     <body>
         <div id="header">
@@ -20,8 +32,8 @@
             <div class="clearer">&nbsp;</div>
 
             <span class="sysinfo">
-            <span class="hasicon" style="<?=icon_css('arrow_down')?>"><?=$C['sysinfo']['downrate']?>B/s</span>&nbsp;
-            <span class="hasicon" style="<?=icon_css('arrow_up')?>"><?=$C['sysinfo']['uprate']?>B/s</span>&nbsp;
+            <span class="hasicon downrate" style="<?=icon_css('arrow_down')?>" title="total download rate"><?=$C['sysinfo']['downrate']?>B/s</span>&nbsp;
+            <span class="hasicon uprate" style="<?=icon_css('arrow_up')?>" title="total upload rate"><?=$C['sysinfo']['uprate']?>B/s</span>&nbsp;
             <? if ($C['sysinfo']['have_disk_space']): ?>
             <span class="hasicon" style="<?=icon_css('drive')?>">
             <span class="progress_outer" title="<?=nice_byte_count($C['sysinfo']['disk_free'])?>B free (<?=$C['sysinfo']['disk_percent_free']?>%)">
