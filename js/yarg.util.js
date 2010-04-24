@@ -9,3 +9,11 @@ function nice_byte_count(value) {
 
     return (new Number(value)).toFixed(suffixes[i][1]) + suffixes[i][0];
 }
+
+function site_url(url) {
+    return YARG.base_url + url;
+}
+
+function icon(i) {
+    return '<img src="' + site_url('icons/'+i+'.png') + '" alt="" />';
+}

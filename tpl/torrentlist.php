@@ -16,27 +16,35 @@ Key:
 <tr id="torrent_top">
     <th style="width: 10px;"><input type="checkbox" /></th>
     <th>Name</th>
-    <th style="width: 50px;">Status</th>
-    <th class="rightalign" style="width: 80px;">Size / Ratio</th>
-    <th class="rightalign" style="width: 70px;">DL rate</th>
-    <th class="rightalign" style="width: 70px;">UL rate</th>
+    <th style="width: 70px;">Progress</th>
+    <th style="width: 70px;">Size</th>
+    <th style="width: 70px;">DL rate</th>
+    <th style="width: 70px;">UL rate</th>
+    <th style="width: 40px;">Ratio</th>
 </tr>
 </thead>
 <? foreach ($C['torrents'] as $t): ?>
 <tbody id="torrent_<?=$t['id']?>" class="<?=$t['state']?>">
 <tr>
     <td><input type="checkbox" name="torrents[]" value="<?=$t['id']?>" /></td>
-    <td colspan="2"><?=anchor("torrents/view/{$t['id']}", $t['name'])?></td>
-    <td class="rightalign"><?=nice_byte_count($t['size'])?>B</td>
-    <td class="rightalign"><?=nice_byte_count($t['downrate'])?>B/s</td>
-    <td class="rightalign"><?=nice_byte_count($t['uprate'])?>B/s</td>
+    <td colspan="3" class="name"><?=anchor("torrents/view/{$t['id']}", $t['name'])?></td>
+    <td colspan="3" class="rightalign">
+        <a class="start" href="<?=site_url('torrents/start/'.$t['id'])?>" title="start"><?=icon('control_play')?></a>
+        <a class="stop" href="<?=site_url('torrents/stop/'.$t['id'])?>" title="stop"><?=icon('control_pause')?></a>
+        <a class="close" href="<?=site_url('torrents/close/'.$t['id'])?>" title="close"><?=icon('control_stop')?></a>
+        <a class="remove" href="<?=site_url('torrents/remove/'.$t['id'])?>" title="remove"><?=icon('control_eject')?></a>
+    </td>
 </tr>
 <tr>
     <td></td>
-    <td><span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['progress']?>%;">&nbsp;</span></span></td>
-    <td><?=$t['completed_percent']?>%</td>
-    <td class="rightalign ratio"><span title="seed ratio" class="<?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></span></td>
-    <td colspan="2"></td>
+    <td>
+        <span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['progress']?>%;">&nbsp;</span></span>
+    </td>
+    <td class="completed_percent"><?=$t['completed_percent']?>%</td>
+    <td class="size"><?=nice_byte_count($t['size'])?>B</td>
+    <td class="rightalign downrate"><?=nice_byte_count($t['downrate'])?>B/s</td>
+    <td class="rightalign uprate"><?=nice_byte_count($t['uprate'])?>B/s</td>
+    <td class="rightalign ratio <?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></td>
 </tr>
 </tbody>
 <? endforeach; ?>
