@@ -36,9 +36,12 @@ $config['modules']['dispatch'] = array(
     'case_sensitive' => true,
     'controller_path' => 'controllers',
     'routes' => array(
-        'list' => array('controller' => 'torrents', 'rewrite' => 'torrent_list'),
-        'json/torrents/(.*)' => array('controller' => 'torrents', 'rewrite' => '$1_json'),
-        'json/system/(.*)' => array('controller' => 'system', 'rewrite' => '$1_json'),
-        '^$' => array('controller' => 'torrents', 'rewrite' => 'torrent_list/default'),
+        // Work around 'list' being a PHP keyword...
+        'torrents/list' => array('controller' => 'torrents', 'rewrite' => 'list_'),
+        'torrents' => array('controller' => 'torrents', 'rewrite' => ''),
+        'system' => array('controller' => 'torrents', 'rewrite' => ''),
+        'json/torrents/(.*)' => array('controller' => 'torrents', 'rewrite' => 'json_$1'),
+        'json/system/(.*)' => array('controller' => 'system', 'rewrite' => 'json_$1'),
+        '^$' => array('controller' => 'torrents', 'rewrite' => 'list_'),
     ),
 );

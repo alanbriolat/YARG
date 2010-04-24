@@ -2,7 +2,7 @@
 
 class System extends Controller
 {
-    public function info_json()
+    public function json_info()
     {
         return json_encode($this->C['sysinfo']);
     }

@@ -6,7 +6,7 @@ function schedule_update()
 function update_display()
 {
     $.getJSON(YARG.base_url + 'json/system/info', update_sysinfo);
-    //$.getJSON(YARG.base_url + 'json/torrents/' + YARG.current.subpage, update_torrents);
+    //$.getJSON(YARG.base_url + 'json/torrents/list/' + YARG.current.subpage, update_torrents);
 
     // Reschedule display update
     schedule_update();

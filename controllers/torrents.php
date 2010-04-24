@@ -8,10 +8,16 @@ class Torrents extends Controller
         $this->C['page'] = 'torrents';
     }
 
-    public function torrent_list($view = 'default')
+    public function list_($view = 'default')
     {
         $this->C['subpage'] = $view;
         $this->C['torrents'] = $this->rtorrent->get_torrents($view);
         return $this->template->render('torrentlist', $this->C);
+    }
+
+    public function json_list($view = 'default')
+    {
+        $torrents = $this->rtorrent->get_torrents($view);
+        return json_encode($torrents);
     }
 }

@@ -21,9 +21,9 @@
         <div id="header">
             <div id="navigation">
                 <ul>
-                    <li><a class="hasicon <?=ifeq($C['page'], 'torrents', 'current')?>" href="#" style="<?=icon_css('drive_go')?>">Torrents</a></li>
-                    <li><a class="hasicon <?=ifeq($C['page'], 'add', 'current')?>" href="#" style="<?=icon_css('feed')?>">Feeds</a></li>
-                    <li><a class="hasicon <?=ifeq($C['page'], 'settings', 'current')?>" href="#" style="<?=icon_css('cog')?>">Settings</a></li>
+                    <li><a class="hasicon <?=ifeq($C['page'], 'torrents', 'current')?>" href="<?=site_url('')?>" style="<?=icon_css('drive_go')?>">Torrents</a></li>
+                    <li><a class="hasicon <?=ifeq($C['page'], 'add', 'current')?>" href="<?=site_url('feeds')?>" style="<?=icon_css('feed')?>">Feeds</a></li>
+                    <li><a class="hasicon <?=ifeq($C['page'], 'settings', 'current')?>" href="<?=site_url('settings')?>" style="<?=icon_css('cog')?>">Settings</a></li>
                 </ul>
             </div>
 
@@ -46,10 +46,10 @@
 
             <div id="subnavigation">
                 <ul>
-                    <li><a class="<?=ifeq($C['subpage'], 'default', 'current')?>" href="<?=site_url('')?>">All (<?=$C['counts']['default']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('list/active')?>">Active (<?=$C['counts']['active']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('list/incomplete')?>">Incomplete (<?=$C['counts']['incomplete']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('list/seeding')?>">Seeding (<?=$C['counts']['seeding']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'default', 'current')?>" href="<?=site_url('torrents/list')?>">All (<?=$C['counts']['default']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('torrents/list/active')?>">Active (<?=$C['counts']['active']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('torrents/list/incomplete')?>">Incomplete (<?=$C['counts']['incomplete']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('torrents/list/seeding')?>">Seeding (<?=$C['counts']['seeding']?>)</a></li>
                 </ul>
             </div>
         </div>

@@ -16,8 +16,8 @@ Key:
 <tr id="torrent_top">
     <th style="width: 10px;"><input type="checkbox" /></th>
     <th>Name</th>
-    <th style="width: 100px;">Status</th>
-    <th class="rightalign" style="width: 70px;">Size /<br />Ratio</th>
+    <th style="width: 50px;">Status</th>
+    <th class="rightalign" style="width: 80px;">Size / Ratio</th>
     <th class="rightalign" style="width: 70px;">DL rate</th>
     <th class="rightalign" style="width: 70px;">UL rate</th>
 </tr>
@@ -26,7 +26,7 @@ Key:
 <tbody id="torrent_<?=$t['id']?>" class="<?=$t['state']?>">
 <tr>
     <td><input type="checkbox" name="torrents[]" value="<?=$t['id']?>" /></td>
-    <td colspan="2"><?=anchor("torrent/{$t['id']}", $t['name'])?></td>
+    <td colspan="2"><?=anchor("torrents/view/{$t['id']}", $t['name'])?></td>
     <td class="rightalign"><?=nice_byte_count($t['size'])?>B</td>
     <td class="rightalign"><?=nice_byte_count($t['downrate'])?>B/s</td>
     <td class="rightalign"><?=nice_byte_count($t['uprate'])?>B/s</td>
