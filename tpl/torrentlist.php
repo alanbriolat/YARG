@@ -2,6 +2,19 @@
 
 <? $TPL->block('body'); ?>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        schedule_update();
+        $('#torrentlist thead input[type=checkbox]').click(function () {
+            $('#torrentlist input[type=checkbox]').attr('checked', $(this).is(':checked'));
+        });
+        $('#torrentlist tbody').click(function () {
+            var el = $('input[type=checkbox]', this);
+            el.attr('checked', !el.is(':checked'));
+        });
+    });
+</script>
+
 <p id="status_key">
 Key:
 <span class="closed"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> closed

@@ -8,7 +8,7 @@
         <script type="text/javascript">
             var YARG = <?=json_encode(array(
                 'base_url' => CSF::config('url_functions.base_url'),
-                'refresh_interval' => 1000,
+                'refresh_interval' => 2000,
                 'current' => array(
                     'page' => $C['page'],
                     'subpage' => $C['subpage'],
@@ -17,11 +17,6 @@
         </script>
         <script type="text/javascript" src="<?=site_url('js/yarg.util.js')?>"></script>
         <script type="text/javascript" src="<?=site_url('js/yarg.js')?>"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                schedule_update();
-            });
-        </script>
     </head>
     <body>
         <div id="header">
