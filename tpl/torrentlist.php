@@ -51,12 +51,12 @@ Key:
 <tr>
     <td></td>
     <td>
-        <span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['completed_percent']?>%"><span class="progress_inner" style="width: <?=$t['progress']?>%;">&nbsp;</span></span>
+        <span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['progress']?>%"><span class="progress_inner" style="width: <?=$t['progress_bar']?>%;">&nbsp;</span></span>
     </td>
-    <td class="completed_percent"><?=$t['completed_percent']?>%</td>
-    <td class="size"><?=nice_byte_count($t['size'])?>B</td>
-    <td class="rightalign downrate"><?=nice_byte_count($t['downrate'])?>B/s</td>
-    <td class="rightalign uprate"><?=nice_byte_count($t['uprate'])?>B/s</td>
+    <td class="completed_percent"><?=$t['progress']?>%</td>
+    <td class="rightalign size"><?=$t['size']?></td>
+    <td class="rightalign downrate"><?=$t['downrate']?></td>
+    <td class="rightalign uprate"><?=$t['uprate']?></td>
     <td class="rightalign ratio <?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></td>
 </tr>
 </tbody>

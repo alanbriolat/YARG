@@ -17,13 +17,12 @@ class rTorrent
 
     // Torrent info query for d.multicall, as a map of info key to RPC command
     public static $VIEW_INFO_QUERY = array(
-        'id'        => 'd.get_hash=',
-        'name'      => 'd.get_name=',
-        'downrate'  => 'd.get_down_rate=',
-        'uprate'    => 'd.get_up_rate=',
-        'size'      => 'd.get_size_bytes=',
-        'chunk_size'        => 'd.get_chunk_size=',
-        'total_chunks'      => 'd.get_size_chunks=',
+        'id'                => 'd.get_hash=',
+        'name'              => 'd.get_name=',
+        'downrate'          => 'cat=$to_xb=$d.get_down_rate=,/s',
+        'uprate'            => 'cat=$to_xb=$d.get_up_rate=,/s',
+        'size'              => 'to_xb=$d.get_size_bytes=',
+        'size_chunks'       => 'd.get_size_chunks=',
         'completed_chunks'  => 'd.get_completed_chunks=',
         'ratio'             => 'd.get_ratio=',
         'is_open'           => 'd.is_open=',
@@ -58,46 +57,39 @@ class rTorrent
         $results = array();
         foreach (php_xmlrpc_decode($resp->value()) as $r)
         {
-            $torrent = array_combine(array_keys(self::$VIEW_INFO_QUERY), $r);
-
-            // XXX: This is a crude workaround for xmlrpc versions < 1.7 not
-            // coping with 64-bit integers.  Unfortunately, most people only
-            // have 1.6 unless they build rtorrent from source...  Without this,
-            // large byte counts (> 2^31) wrap around to negative numbers.
-            $torrent['size'] = $torrent['chunk_size'] * $torrent['total_chunks'];
-            $torrent['completed_size'] = $torrent['chunk_size'] * $torrent['completed_chunks'];
+            $t = array_combine(array_keys(self::$VIEW_INFO_QUERY), $r);
 
             // Sanitised variables
-            $torrent['ratio'] = round($torrent['ratio'] / 1000, 2);
+            $t['ratio'] = round($t['ratio'] / 1000, 2);
 
             // Synthesised variables
-            $torrent['completed_percent'] = round($torrent['completed_size'] / $torrent['size'] * 100);
+            $t['progress'] = round($t['completed_chunks'] * 100 / $t['size_chunks']);
 
             // Figure out the torrent state
-            if ($torrent['is_open'] == 0) {
-                $torrent['state'] = 'closed';
-            } else if ($torrent['is_active'] == 1) {
-                if ($torrent['is_complete'] == 1) {
-                    $torrent['state'] = 'seeding';
+            if ($t['is_open'] == 0) {
+                $t['state'] = 'closed';
+            } else if ($t['is_active'] == 1) {
+                if ($t['is_complete'] == 1) {
+                    $t['state'] = 'seeding';
                 } else {
-                    $torrent['state'] = 'downloading';
+                    $t['state'] = 'downloading';
                 }
             } else {
-                $torrent['state'] = 'stopped';
+                $t['state'] = 'stopped';
             }
 
             // Work out which general progress to use
-            switch ($torrent['state'])
+            switch ($t['state'])
             {
             case 'seeding':
-                $torrent['progress'] = round(min($torrent['ratio'], 1.0) * 100);
+                $t['progress_bar'] = round(min($t['ratio'], 1.0) * 100);
                 break;
             default:
-                $torrent['progress'] = $torrent['completed_percent'];
+                $t['progress_bar'] = $t['progress'];
                 break;
             }
 
-            $results[] = $torrent;
+            $results[] = $t;
         }
 
         return $results;

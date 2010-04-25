@@ -73,15 +73,15 @@ function torrent_row_init(row, t) {
     $('a.stop', row).attr('href', site_url('torrents/stop/' + t.id));
     $('a.close', row).attr('href', site_url('torrents/close/' + t.id));
     $('a.remove', row).attr('href', site_url('torrents/remove/' + t.id));
-    $('.size', row).text(nice_byte_count(t.size) + 'B');
+    $('.size', row).text(t.size);
 }
 
 function torrent_row_update(row, t) {
     row.attr('class', t.state);
-    $('.progress_outer', row).attr('title', t.state + ': ' + t.completed_percent + '%');
-    $('.progress_inner', row).css('width', t.progress + '%');
-    $('.completed_percent', row).text(t.completed_percent + '%');
-    $('.downrate', row).text(nice_byte_count(t.downrate) + 'B/s');
-    $('.uprate', row).text(nice_byte_count(t.uprate) + 'B/s');
+    $('.progress_outer', row).attr('title', t.state + ': ' + t.progress + '%');
+    $('.progress_inner', row).css('width', t.progress_bar + '%');
+    $('.completed_percent', row).text(t.progress + '%');
+    $('.downrate', row).text(t.downrate);
+    $('.uprate', row).text(t.uprate);
     $('.ratio', row).text(t.ratio).toggleClass('good', t.ratio >= 1.0).toggleClass('bad', t.ratio < 1.0);
 }
