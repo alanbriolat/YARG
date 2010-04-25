@@ -17,10 +17,10 @@
 
 <p id="status_key">
 Key:
-<span class="closed"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> closed
-<span class="stopped"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> stopped
-<span class="downloading"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> downloading
-<span class="seeding"><span class="progress_outer"><span class="progress_inner">&nbsp;</span></span></span> seeding
+<span class="closed"><span class="progbar_outer"><span class="progbar_inner">&nbsp;</span></span></span> closed
+<span class="stopped"><span class="progbar_outer"><span class="progbar_inner">&nbsp;</span></span></span> stopped
+<span class="downloading"><span class="progbar_outer"><span class="progbar_inner">&nbsp;</span></span></span> downloading
+<span class="seeding"><span class="progbar_outer"><span class="progbar_inner">&nbsp;</span></span></span> seeding
 </p>
 
 <div id="torrentlist">
@@ -51,9 +51,9 @@ Key:
 <tr>
     <td></td>
     <td>
-        <span class="progress_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['progress']?>%"><span class="progress_inner" style="width: <?=$t['progress_bar']?>%;">&nbsp;</span></span>
+        <span class="progbar_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['progress']?>%"><span class="progbar_inner" style="width: <?=$t['progress_bar']?>%;">&nbsp;</span></span>
     </td>
-    <td class="completed_percent"><?=$t['progress']?>%</td>
+    <td class="progress"><?=$t['progress']?>%</td>
     <td class="rightalign size"><?=$t['size']?></td>
     <td class="rightalign downrate"><?=$t['downrate']?></td>
     <td class="rightalign uprate"><?=$t['uprate']?></td>

@@ -41,14 +41,14 @@
 @header_bg: @color_pri_dd;
 @header_accent: @color_pri;
 
-@progress_closed_fg: #999;
-@progress_closed_bg: #fff;
-@progress_stopped_fg: #555;
-@progress_stopped_bg: #ccc;
-@progress_downloading_fg: @color_a;
-@progress_downloading_bg: @color_a_l;
-@progress_seeding_fg: @color_b;
-@progress_seeding_bg: @color_b_l;
+@progbar_closed_fg: #999;
+@progbar_closed_bg: #fff;
+@progbar_stopped_fg: #555;
+@progbar_stopped_bg: #ccc;
+@progbar_downloading_fg: @color_a;
+@progbar_downloading_bg: @color_a_l;
+@progbar_seeding_fg: @color_b;
+@progbar_seeding_bg: @color_b_l;
 
 @table_head_bg: @color_pri_d;
 @table_head_text: @color_text_light;
@@ -61,13 +61,13 @@
 
 @tab_border_radius: 3px;
 
-@progress_border_width: 1px;
-@progress_border_padding: 0px;
-@progress_border_radius_inner: 0px;
-/*@progress_border_radius_outer: @progress_border_radius_inner + @progress_border_padding + @progress_border_width;*/
-@progress_border_radius_outer: 3px;
-@progress_inner_height: 5px;
-@progress_outer_height: @progress_inner_height + (2 * @progress_border_padding);
+@progbar_border_width: 1px;
+@progbar_border_padding: 0px;
+@progbar_border_radius_inner: 0px;
+/*@progbar_border_radius_outer: @progbar_border_radius_inner + @progbar_border_padding + @progbar_border_width;*/
+@progbar_border_radius_outer: 3px;
+@progbar_inner_height: 5px;
+@progbar_outer_height: @progbar_inner_height + (2 * @progbar_border_padding);
 
 @rounded_corners (@radius: 3px) {
     -moz-border-radius: @radius;
@@ -160,28 +160,28 @@ img.icon {
     padding-right: 20px;
 }
 
-.progress_outer {
+.progbar_outer {
     display: inline-block;
     vertical-align: middle;
-    height: @progress_outer_height;
-    padding: @progress_border_padding;
-    border: @progress_border_width solid;
-    @rounded_corners(@progress_border_radius_outer);
+    height: @progbar_outer_height;
+    padding: @progbar_border_padding;
+    border: @progbar_border_width solid;
+    @rounded_corners(@progbar_border_radius_outer);
 }
 
-.progress_inner {
+.progbar_inner {
     display: inline-block;
-    height: @progress_inner_height;
-    @rounded_corners(@progress_border_radius_inner);
+    height: @progbar_inner_height;
+    @rounded_corners(@progbar_border_radius_inner);
 }
 
-@progress_style (@fg; @bg; @width: auto) {
-    .progress_outer {
+@progbar_style (@fg; @bg; @width: auto) {
+    .progbar_outer {
         background-color: @bg;
         border-color: @fg;
         width: @width;
     }
-    .progress_inner {
+    .progbar_inner {
         background-color: @fg;
     }
 }
@@ -205,7 +205,7 @@ img.icon {
         float: left;
         text-align: left;
         padding: 2px 0;
-        @progress_style(@header_text; @header_bg; 120px);
+        @progbar_style(@header_text; @header_bg; 120px);
     }
 }
 
@@ -346,17 +346,17 @@ img.icon {
     }
 }
 
-.closed { @progress_style(@progress_closed_fg; @progress_closed_bg); }
-.stopped { @progress_style(@progress_stopped_fg; @progress_stopped_bg); }
-.downloading { @progress_style(@progress_downloading_fg; @progress_downloading_bg); }
-.seeding { @progress_style(@progress_seeding_fg; @progress_seeding_bg); }
+.closed { @progbar_style(@progbar_closed_fg; @progbar_closed_bg); }
+.stopped { @progbar_style(@progbar_stopped_fg; @progbar_stopped_bg); }
+.downloading { @progbar_style(@progbar_downloading_fg; @progbar_downloading_bg); }
+.seeding { @progbar_style(@progbar_seeding_fg; @progbar_seeding_bg); }
 
 #status_key {
-    .progress_outer {
+    .progbar_outer {
         width: 20px !important;
     }
 
-    .progress_inner {
+    .progbar_inner {
         width: 50% !important;
     }
 }

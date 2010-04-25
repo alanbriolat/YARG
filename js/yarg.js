@@ -13,9 +13,9 @@ var torrent_row_blank = $('\
 <tr> \
     <td></td> \
     <td> \
-        <span class="progress_outer" style="width: 100%;" title=""><span class="progress_inner" style="">&nbsp;</span></span> \
+        <span class="progbar_outer" style="width: 100%;" title=""><span class="progbar_inner" style="">&nbsp;</span></span> \
     </td> \
-    <td class="completed_percent"></td> \
+    <td class="progress"></td> \
     <td class="size"></td> \
     <td class="rightalign downrate"></td> \
     <td class="rightalign uprate"></td> \
@@ -78,9 +78,9 @@ function torrent_row_init(row, t) {
 
 function torrent_row_update(row, t) {
     row.attr('class', t.state);
-    $('.progress_outer', row).attr('title', t.state + ': ' + t.progress + '%');
-    $('.progress_inner', row).css('width', t.progress_bar + '%');
-    $('.completed_percent', row).text(t.progress + '%');
+    $('.progbar_outer', row).attr('title', t.state + ': ' + t.progress + '%');
+    $('.progbar_inner', row).css('width', t.progress_bar + '%');
+    $('.progress', row).text(t.progress + '%');
     $('.downrate', row).text(t.downrate);
     $('.uprate', row).text(t.uprate);
     $('.ratio', row).text(t.ratio).toggleClass('good', t.ratio >= 1.0).toggleClass('bad', t.ratio < 1.0);

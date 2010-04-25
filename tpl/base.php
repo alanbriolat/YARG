@@ -37,8 +37,8 @@
             <span class="hasicon uprate" style="display: inline-block; width: 70px; <?=icon_css('arrow_up')?>" title="total upload rate"><?=$C['sysinfo']['uprate']?>B/s</span>&nbsp;
             <? if ($C['sysinfo']['have_disk_space']): ?>
             <span class="hasicon" style="<?=icon_css('drive')?>">
-            <span class="progress_outer" title="<?=nice_byte_count($C['sysinfo']['disk_free'])?>B free (<?=$C['sysinfo']['disk_percent_free']?>%)">
-                <span class="progress_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>%;" title="<?=nice_byte_count($C['sysinfo']['disk_used'])?>B used (<?=$C['sysinfo']['disk_percent_used']?>%)">&nbsp;</span>
+            <span class="progbar_outer" title="<?=nice_byte_count($C['sysinfo']['disk_free'])?>B free (<?=$C['sysinfo']['disk_percent_free']?>%)">
+                <span class="progbar_inner" style="width: <?=$C['sysinfo']['disk_percent_used']?>%;" title="<?=nice_byte_count($C['sysinfo']['disk_used'])?>B used (<?=$C['sysinfo']['disk_percent_used']?>%)">&nbsp;</span>
             </span>
             <?=nice_byte_count($C['sysinfo']['disk_used'])?>B / <?=nice_byte_count($C['sysinfo']['disk_total'])?>B
             </span>
