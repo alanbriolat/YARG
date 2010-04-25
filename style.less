@@ -1,5 +1,5 @@
 /* 
- * Colour scheme: http://colorschemedesigner.com/#0M32bsOsO----
+ * Colour scheme: http://colorschemedesigner.com/#3l61SsOsOWTXl
  *
  * To try:
  *  http://colorschemedesigner.com/#3N62rsOsO----
@@ -7,21 +7,26 @@
  *  http://colorschemedesigner.com/#3p61XsOsOK-K-
  */
 
-@color_pri_ll:  #fff6e8;
-@color_pri_l:   #ffd18c;
-@color_pri:     #e69317;
-@color_pri_d:   #735e3f;
-@color_pri_dd:  #452900;
-@color_a_ll:    #f1eaff;
-@color_a_l:     #bb98ff;
-@color_a:       #491e9d;
-@color_a_d:     #392f4e;
-@color_a_dd:    #10002f;
-@color_b_ll:    #e8ffe8;
-@color_b_l:     #8cff8c;
-@color_b:       #12b812;
-@color_b_d:     #325c32;
-@color_b_dd:    #003700;
+@color_pri_ll:  #d7f4f8;
+@color_pri_l:   #84eaf8;
+@color_pri:     #107d8d;
+@color_pri_d:   #28464b;
+@color_pri_dd:  #002b30;
+@color_a_ll:    #dbe3f9;
+@color_a_l:     #90acf9;
+@color_a:       #1f409a;
+@color_a_d:     #2f3952;
+@color_a_dd:    #010f35;
+@color_b_ll:    #b8fae0;
+@color_b_l:     #83fa9e;
+@color_b:       #11ad34;
+@color_b_d:     #305c3a;
+@color_b_dd:    #003c0e;
+@color_c_ll:    #feecdb;
+@color_c_l:     #febf85;
+@color_c:       #e67a17;
+@color_c_d:     #7a5c40;
+@color_c_dd:    #4f2601;
 
 @color_text_light: #fff;
 @color_text_dark:  #000;
@@ -33,8 +38,8 @@
 @link_hover_text: @color_a;
 
 @header_text: @color_text_light;
-@header_bg: @color_a_dd;
-@header_accent: @color_a_d;
+@header_bg: @color_pri_dd;
+@header_accent: @color_pri;
 
 @progress_closed_fg: #999;
 @progress_closed_bg: #fff;
@@ -47,7 +52,7 @@
 
 @table_head_bg: @color_pri_d;
 @table_head_text: @color_text_light;
-@row_bg1: #fff;
+@row_bg1: @color_c_ll;
 @row_bg2: @color_pri_ll;
 @row_hover_bg: @color_pri_l;
 
@@ -186,6 +191,9 @@ img.icon {
     border-top: 5px solid @header_accent;
     background-color: @header_bg;
     color: @header_text;
+    background-image: url('img/headerbg.png');
+    background-position: top left;
+    background-repeat: repeat-x;
 
     h1 {
         padding: 0;
