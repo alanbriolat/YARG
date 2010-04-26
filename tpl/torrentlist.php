@@ -5,12 +5,21 @@
 <script type="text/javascript">
     $(document).ready(function () {
         schedule_update();
+
+        // Toggle all checkboxes with the header checkbox
         $('#torrentlist thead input[type=checkbox]').click(function () {
             $('#torrentlist input[type=checkbox]').attr('checked', $(this).is(':checked'));
         });
+
+        // Clicking a row toggles it's selection state
         $('#torrentlist tbody').click(function () {
             var el = $('input[type=checkbox]', this);
             el.attr('checked', !el.is(':checked'));
+        });
+
+        // Prevent <a> click events from propagating
+        $('#torrentlist a').click(function (event) {
+            event.stopPropagation();
         });
     });
 </script>
