@@ -47,10 +47,10 @@
 
             <div id="subnavigation">
                 <ul>
-                    <li><a class="<?=ifeq($C['subpage'], 'default', 'current')?>" href="<?=site_url('torrents/list')?>">All (<?=$C['counts']['default']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('torrents/list/active')?>">Active (<?=$C['counts']['active']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('torrents/list/incomplete')?>">Incomplete (<?=$C['counts']['incomplete']?>)</a></li>
-                    <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('torrents/list/seeding')?>">Seeding (<?=$C['counts']['seeding']?>)</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'default', 'current')?>" href="<?=site_url('torrents/list')?>">All</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'active', 'current')?>" href="<?=site_url('torrents/list/active')?>">Active</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'incomplete', 'current')?>" href="<?=site_url('torrents/list/incomplete')?>">Incomplete</a></li>
+                    <li><a class="<?=ifeq($C['subpage'], 'seeding', 'current')?>" href="<?=site_url('torrents/list/seeding')?>">Seeding</a></li>
                 </ul>
             </div>
         </div>

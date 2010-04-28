@@ -7,6 +7,5 @@ class Controller extends CSF_Controller
     public function __construct()
     {
         $this->C['sysinfo'] = $this->rtorrent->get_sysinfo();
-        $this->C['counts'] = $this->rtorrent->get_counts();
     }
 }

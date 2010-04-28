@@ -129,22 +129,6 @@ class rTorrent
 
         return $values;
     }
-
-    public function get_counts()
-    {
-
-        $msgs = array();
-
-        foreach (self::$VIEWS as $v)
-            $msgs[] = new xmlrpcmsg('download_list', array(new xmlrpcval($v, 'string')));
-        $resps = $this->_rpc->multicall($msgs);
-        
-        $counts = array();
-        foreach ($resps as $r)
-            $counts[] = count(php_xmlrpc_decode($r->value()));
-
-        return array_combine(self::$VIEWS, $counts);
-    }
 }
 
 
