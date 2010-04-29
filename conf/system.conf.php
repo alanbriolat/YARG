@@ -3,8 +3,9 @@
  * YARG system configuration - you probably shouldn't touch this!
  */
 
-$config['core']['library_paths'] = array('libraries');
+$config['core']['library_paths'] = array('extlib', 'lib');
 $config['core']['module_paths'] = array('modules');
+$config['core']['use_html_exception_handler'] = true;
 
 $config['autoload']['libraries'] = array(
     'xmlrpc',

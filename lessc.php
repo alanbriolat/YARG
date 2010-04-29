@@ -3,7 +3,7 @@
 header('Content-Type: text/css');
 
 require_once 'csf/csf.php';
-CSF::add_library_path('libraries');
+CSF::add_library_path('extlib');
 CSF::load_library('lessphp/lessc.inc');
 
 $whitelist = array('style.less');

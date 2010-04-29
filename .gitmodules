@@ -1,6 +1,6 @@
 [submodule "csf"]
 	path = csf
 	url = git://github.com/alanbriolat/CSF.git
-[submodule "libraries/lessphp"]
-	path = libraries/lessphp
+[submodule "extlib/lessphp"]
+	path = extlib/lessphp
 	url = git://github.com/leafo/lessphp.git
