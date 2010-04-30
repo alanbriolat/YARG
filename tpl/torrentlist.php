@@ -4,18 +4,32 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // Start automatic updating
         schedule_update();
 
-        // Toggle all checkboxes with the header checkbox
-        $('#torrentlist thead input[type=checkbox]').click(function () {
-            $('#torrentlist input[type=checkbox]').attr('checked', $(this).is(':checked'));
+        // Operations on all checkboxes
+        $('#torrentlist .groupaction .selectall').click(function (event) {
+            event.preventDefault();
+            $('#torrentlist input[type=checkbox]').attr('checked', true);
+        });
+        $('#torrentlist .groupaction .selectinverse').click(function (event) {
+            event.preventDefault();
+            $('#torrentlist input[type=checkbox]').each(function () {
+                this.checked = !this.checked;
+            });
+        });
+        $('#torrentlist .groupaction .selectnone').click(function (event) {
+            event.preventDefault();
+            $('#torrentlist input[type=checkbox]').attr('checked', false);
         });
 
         // Clicking a row toggles it's selection state
+        /* TODO: Re-enable this?
         $('#torrentlist tbody').click(function () {
             var el = $('input[type=checkbox]', this);
             el.attr('checked', !el.is(':checked'));
         });
+        */
 
         // Prevent <a> click events from propagating
         $('#torrentlist a').click(function (event) {
@@ -32,45 +46,35 @@ Key:
 <span class="seeding"><span class="progbar_outer"><span class="progbar_inner">&nbsp;</span></span></span> seeding
 </p>
 
+
 <div id="torrentlist">
-<table>
-<thead>
-<tr id="torrent_top">
-    <th style="width: 10px;"><input type="checkbox" /></th>
-    <th>Name</th>
-    <th style="width: 70px;">Progress</th>
-    <th style="width: 70px;">Size</th>
-    <th style="width: 70px;">DL rate</th>
-    <th style="width: 70px;">UL rate</th>
-    <th style="width: 40px;">Ratio</th>
-</tr>
-</thead>
+
+<div class="groupaction">
+<a href="#" class="selectall">Select all</a> |
+<a href="#" class="selectinverse">Invert selection</a> |
+<a href="#" class="selectnone">Select none</a>
+</div>
+
+<ul>
 <? foreach ($C['torrents'] as $t): ?>
-<tbody id="torrent_<?=$t['id']?>" class="<?=$t['state']?>">
-<tr>
-    <td><input type="checkbox" name="torrents[]" value="<?=$t['id']?>" /></td>
-    <td colspan="3" class="name"><?=anchor("torrents/view/{$t['id']}", $t['name'])?></td>
-    <td colspan="3" class="rightalign">
-        <a class="start" href="<?=site_url('torrents/start/'.$t['id'])?>" title="start"><?=icon('control_play')?></a>
-        <a class="stop" href="<?=site_url('torrents/stop/'.$t['id'])?>" title="stop"><?=icon('control_pause')?></a>
-        <a class="close" href="<?=site_url('torrents/close/'.$t['id'])?>" title="close"><?=icon('control_stop')?></a>
-        <a class="remove" href="<?=site_url('torrents/remove/'.$t['id'])?>" title="remove"><?=icon('control_eject')?></a>
-    </td>
-</tr>
-<tr>
-    <td></td>
-    <td>
-        <span class="progbar_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['progress']?>%"><span class="progbar_inner" style="width: <?=$t['progress_bar']?>%;">&nbsp;</span></span>
-    </td>
-    <td class="progress"><?=$t['progress']?>%</td>
-    <td class="rightalign size"><?=$t['size']?></td>
-    <td class="rightalign downrate"><?=$t['downrate']?></td>
-    <td class="rightalign uprate"><?=$t['uprate']?></td>
-    <td class="rightalign ratio <?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></td>
-</tr>
-</tbody>
+    <li id="torrent_<?=$t['id']?>" class="torrent <?=$t['state']?>">
+        <span class="name">
+            <input type="checkbox" name="torrents[]" value="<?=$t['id']?>" />
+            <a class="value" href="<?=site_url("torrents/view/{$t['id']}")?>"><?=$t['name']?></a>
+        </span>
+        <ul class="info">
+            <li class="progress"><span class="label">Progress:</span> <span class="value"><?=$t['progress']?></span>%</li>
+            <li class="size"><span class="label">Size:</span> <span class="value"><?=$t['size']?></span></li>
+            <li class="downrate"><span class="label">DL:</span> <span class="value"><?=$t['downrate']?></span></li>
+            <li class="uprate"><span class="label">UL:</span> <span class="value"><?=$t['uprate']?></span></li>
+            <li class="ratio"><span class="label">Ratio:</span> <span class="value <?=($t['ratio'] < 1.0 ? 'bad' : 'good')?>"><?=$t['ratio']?></span></li>
+            <li class="buttons"><span class="label">Actions:</span>&nbsp;<a class="start" href="<?=site_url('torrents/start/'.$t['id'])?>" title="start"><?=icon('control_play')?></a>&nbsp;<a class="stop" href="<?=site_url('torrents/stop/'.$t['id'])?>" title="stop"><?=icon('control_pause')?></a>&nbsp;<a class="close" href="<?=site_url('torrents/close/'.$t['id'])?>" title="close"><?=icon('control_stop')?></a>&nbsp;<a class="remove" href="<?=site_url('torrents/remove/'.$t['id'])?>" title="remove"><?=icon('control_eject')?></a></li>
+            <li class="progressbar"><div class="progbar_outer" style="width: 100%;" title="<?=$t['state']?>: <?=$t['progress']?>%"><div class="progbar_inner" style="width: <?=$t['progress_bar']?>%;">&nbsp;</div></div></li>
+        </ul>
+    </li>
 <? endforeach; ?>
-</table>
+</ul>
+
 </div>
 
 <? $TPL->endblock(); ?>

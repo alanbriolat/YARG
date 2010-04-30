@@ -28,20 +28,21 @@
 @color_c_d:     #7a5c40;
 @color_c_dd:    #4f2601;
 
-@color_text_light: #fff;
-@color_text_dark:  #000;
+@color_text:            #000;
+@color_text_alt:        #777;
+@color_text_inverse:    #fff;
 
-@body_text: @color_text_dark;
+@body_text: @color_text;
 @body_bg: #fff;
 
 @link_text: @color_a_dd;
 @link_hover_text: @color_a;
 
-@header_text: @color_text_light;
+@header_text: @color_text_inverse;
 @header_bg: @color_pri_dd;
 @header_accent: @color_pri;
 
-@progbar_closed_fg: #999;
+@progbar_closed_fg: @color_text_alt * 1.5;
 @progbar_closed_bg: #fff;
 @progbar_stopped_fg: #555;
 @progbar_stopped_bg: #ccc;
@@ -51,7 +52,7 @@
 @progbar_seeding_bg: @color_b_l;
 
 @table_head_bg: @color_pri_d;
-@table_head_text: @color_text_light;
+@table_head_text: @color_text_inverse;
 @row_bg1: @color_c_ll;
 @row_bg2: @color_pri_ll;
 @row_hover_bg: @color_pri_l;
@@ -66,8 +67,7 @@
 @progbar_border_radius_inner: 0px;
 /*@progbar_border_radius_outer: @progbar_border_radius_inner + @progbar_border_padding + @progbar_border_width;*/
 @progbar_border_radius_outer: 3px;
-@progbar_inner_height: 5px;
-@progbar_outer_height: @progbar_inner_height + (2 * @progbar_border_padding);
+@progbar_outer_height: 5px;
 
 @rounded_corners (@radius: 3px) {
     -moz-border-radius: @radius;
@@ -160,9 +160,14 @@ img.icon {
     padding-right: 20px;
 }
 
+.good {
+    color: @good_text;
+}
+.bad {
+    color: @bad_text;
+}
+
 .progbar_outer {
-    display: inline-block;
-    vertical-align: middle;
     height: @progbar_outer_height;
     padding: @progbar_border_padding;
     border: @progbar_border_width solid;
@@ -170,9 +175,13 @@ img.icon {
 }
 
 .progbar_inner {
-    display: inline-block;
-    height: @progbar_inner_height;
+    height: 100%;
     @rounded_corners(@progbar_border_radius_inner);
+}
+
+span.progbar_outer, span.progbar_inner {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 @progbar_style (@fg; @bg; @width: auto) {
@@ -205,7 +214,7 @@ img.icon {
         float: left;
         text-align: left;
         padding: 2px 0;
-        @progbar_style(@header_text; @header_bg; 120px);
+        @progbar_style(@header_text; transparent; 120px);
     }
 }
 
@@ -285,64 +294,54 @@ img.icon {
     padding: 10px 30px;
 }
 
-#torrentlist table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#torrentlist th {
-    text-align: left;
-}
-/* Necessary because the above rule overrides the .rightalign rule */
-#torrentlist th.rightalign {
-    text-align: right;
-}
-
-#torrentlist tr {
-    /*border: 1px solid #579;*/
-}
-
-/*
-#torrentlist tbody {
-    border-top: 10px solid #fff;
-    background-color: #f7f7f7;
-}
-
-#torrentlist tbody:hover {
-    background-color: #ddd;
-}
-*/
-
 #torrentlist {
-    thead {
-        background-color: @table_head_bg;
-        color: @table_head_text;
+    ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
-    tbody {
-    }
+    li.torrent {
+        margin-top: 10px;
+        border: 1px solid @color_text_alt * 1.5;
 
-    tbody:nth-child(even) {
-        background-color: @row_bg1;
-    }
+        span.label {
+            color: @color_text_alt;
+        }
 
-    tbody:nth-child(odd) {
-        background-color: @row_bg2;
-    }
+        span.name {
+            display: block;
+            padding: 5px;
+        }
 
-    tbody:hover {
-        background-color: @row_hover_bg;
-    }
+        ul.info {
+            text-align: right;
 
-    td {
-        padding: 4px 5px;
-    }
+            li {
+                display: inline-block;
+                padding: 0 5px 5px 5px;
+                text-align: left;
+            }
 
-    .good {
-        color: @good_text;
-    }
-    .bad {
-        color: @bad_text;
+            li.progress, li.size, li.downrate, li.uprate, li.ratio {
+                width: 100px;
+            }
+
+            li.buttons {
+                float: left;
+            }
+
+            li.progressbar {
+                display: block;
+                padding: 0;
+                clear: both;
+
+                .progbar_outer, .progbar_inner {
+                    border: none;
+                    height: 3px;
+                }
+            }
+        }
     }
 }
 
