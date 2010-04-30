@@ -71,8 +71,7 @@ function torrent_row_init(row, t) {
 }
 
 function torrent_row_update(row, t) {
-    row.removeClass(['closed', 'stopped', 'downloading', 'seeding']);
-    row.addClass(t.state);
+    row.attr('class', 'torrent ' + t.state);
     $('.progbar_outer', row).attr('title', t.state + ': ' + t.progress + '%');
     $('.progbar_inner', row).css('width', t.progress_bar + '%');
     $('.progress .value', row).text(t.progress);
