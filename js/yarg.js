@@ -44,7 +44,9 @@ function update_torrents(data) {
         if (row.length == 0) {
             row = torrent_row_blank.clone();
             torrent_row_init(row, t);
+            row.hide();
             row.prependTo('#torrentlist > ul');
+            row.slideDown();
         }
         
         // Update and mark as being in the view
