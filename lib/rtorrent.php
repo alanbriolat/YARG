@@ -98,6 +98,8 @@ class rTorrent
     public function get_sysinfo()
     {
         $msgs = array();
+        $msgs[] = new xmlrpcmsg('system.client_version', array());
+        $msgs[] = new xmlrpcmsg('system.library_version', array());
         $msgs[] = new xmlrpcmsg('get_down_rate', array());
         $msgs[] = new xmlrpcmsg('get_up_rate', array());
         $msgs[] = new xmlrpcmsg('get_directory', array());
@@ -105,7 +107,7 @@ class rTorrent
         $values = array();
         foreach ($resps as $r)
             $values[] = php_xmlrpc_decode($r->value());
-        $values = array_combine(array('downrate', 'uprate', 'directory'), $values);
+        $values = array_combine(array('version', 'lib_version', 'downrate', 'uprate', 'directory'), $values);
 
         $values['downrate'] = round($values['downrate'] / 1024, 2).'K';
         $values['uprate'] = round($values['uprate'] / 1024, 2).'K';

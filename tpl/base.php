@@ -59,6 +59,13 @@
         <? $TPL->block('body'); ?>
         <? $TPL->endblock(); ?>
         </div>
+
+        <p id="footer">
+        <a href="<?=YARG_URL?>"><?=YARG_NAME?>-<?=YARG_VERSION?></a>
+        &bull; rtorrent-<?=$C['sysinfo']['version']?>
+        &bull; libtorrent-<?=$C['sysinfo']['lib_version']?>
+        &bull; Silk icons by <a href="http://www.famfamfam.com/">Mark James</a>
+        </p>
         </div>
     </body>
 </html>
